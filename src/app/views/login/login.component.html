@@ -1,0 +1,9 @@
+<!-- Default form login -->
+<form [formGroup] = "loginForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5" autocomplete="off">
+    <p class="h4 mb-4">There shall be no darkness </p> 
+    <p *ngIf="loginErrorMessage">{{loginErrorMessage}}</p>   
+    <input type="email" id="username" formControlName="username" class="form-control mb-4" placeholder="username" autocomplete="off">
+    <input type="password" id="password"  formControlName="password" class="form-control mb-4" placeholder="Password" autocomplete="off">
+    <button color="info" block="true" class="my-4" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+</form>
+ 

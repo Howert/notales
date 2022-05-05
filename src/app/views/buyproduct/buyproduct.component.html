@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <form [formGroup] = "buyProductForm" (ngSubmit)="onSubmit()">
+
+        <label for="client" class="pb-1 required">Client:</label>
+        <input type="text" class="form-control"  id="client" formControlName="client">
+
+        <label for="product" class="pb-1 required">Product:</label>
+        <select class="form-control" id="client" formControlName="product">
+        <option *ngFor="let product of products" [value]="product.uuid">
+            {{product?.name}}
+        </option>
+        </select>
+
+        <button type="submit"[disabled]="!buyProductForm.valid" > Buy</button>
+    </form>
+
+</div>
