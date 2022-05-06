@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { transactionObject } from 'src/app/models/transaction-object';
+import { Prodnameuuid } from 'src/app/models/prodnameuuid';
 
 @Component({
   selector: 'app-buyproduct',
@@ -29,7 +31,7 @@ export class BuyproductComponent implements OnInit, OnDestroy {
      this.products$ = this.merchantService.getListOfProducts().subscribe((response: Product[])=>{
       if (response && response.length > 0){        
         for (const product of response){
-          let refinedProduct = {
+          let refinedProduct: Prodnameuuid = {
             "name" : "",
             "uuid" : ""
           }
@@ -49,13 +51,27 @@ export class BuyproductComponent implements OnInit, OnDestroy {
     this.products$.unsubscribe();
   }
 
-  public products: any[];
+  public products: Prodnameuuid[] = [];
   public buyProductForm;
 
   private products$: Subscription;
 
+  public errorMessage: string;
+
   onSubmit(){
-    console.log('collecting data')
+    const clientProduct : transactionObject = {
+      client : this.buyProductForm.value.client,
+      product : this.buyProductForm.value.product
+    }
+
+    this.errorMessage = null;
+
+    this.merchantService.vodacomBuyProduct(clientProduct).subscribe((response)=>{
+        this.buyProductForm.reset();
+        this.errorMessage = response.message;
+    }, (error: HttpErrorResponse)=>{
+      this.errorMessage = 'There was an error, try again';
+    });
   }
 
 }

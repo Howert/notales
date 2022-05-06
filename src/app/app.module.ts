@@ -19,6 +19,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
 import { BuyproductComponent } from './views/buyproduct/buyproduct.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
@@ -46,7 +48,10 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     AppRoutesModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatButtonModule,
+    MatIconModule
+    
   ],
   providers: [AuthGuard, {
     provide : HTTP_INTERCEPTORS,

@@ -1,11 +1,13 @@
 <div class="container-fluid">
-    <form [formGroup] = "buyProductForm" (ngSubmit)="onSubmit()">
+
+    <div><p *ngIf="errorMessage">{{errorMessage}}</p></div>
+    <form [formGroup] = "buyProductForm" (ngSubmit)="onSubmit()" autocomplete="off">
 
         <label for="client" class="pb-1 required">Client:</label>
-        <input type="text" class="form-control"  id="client" formControlName="client">
+        <input type="text" class="form-control"  id="client" formControlName="client" autocomplete="off">
 
         <label for="product" class="pb-1 required">Product:</label>
-        <select class="form-control" id="client" formControlName="product">
+        <select class="form-control" id="client" formControlName="product" autocomplete="off">
         <option *ngFor="let product of products" [value]="product.uuid">
             {{product?.name}}
         </option>

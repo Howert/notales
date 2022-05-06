@@ -2,15 +2,17 @@
     <mat-drawer-container class="example-container">
 
         <!-- sidebar content -->
-        <mat-drawer mode="side" opened>
+        <mat-drawer #drawer mode="side" opened>
             <app-sidebar></app-sidebar>    
         </mat-drawer>
     
         <!-- Dashboard content -->
         <mat-drawer-content>
-            <div class="container py-3 px-3">
+            <div class="container-fluid py-3 px-3">
             <div class="row">
-                DASHBOARD
+                <span><button mat-icon-button color="accent" aria-label="Toggle Button" (click)="drawer.toggle()">
+                    <mat-icon>menu</mat-icon>
+                  </button></span>
             </div>
             <div class="my-4">
                 <router-outlet></router-outlet>
